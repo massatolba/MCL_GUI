@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sensor Data</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        #sensorData { font-size: 24px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>ESP32 Sensor Data</h1>
+    <p id="sensorData">Connecting...</p>
+    <script>
+        // Replace with your ESP32's WebSocket IP and port
+        const ws = new WebSocket("ws://<ESP32_IP>:81");
+
+        ws.onopen = () => {
+            document.getElementById("sensorData").innerText = "Connected";
+        };
+
+        ws.onmessage = (event) => {
+            document.getElementById("sensorData").innerText = "Sensor Value: " + event.data;
+        };
+
+        ws.onclose = () => {
+            document.getElementById("sensorData").innerText = "Disconnected";
+        };
+    </script>
+</body>
+</html>
