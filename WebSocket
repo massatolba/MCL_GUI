@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html>
 <head>
     <title>Sensor Data</title>
@@ -11,7 +11,7 @@
     <h1>ESP32 Sensor Data</h1>
     <p id="sensorData">Connecting...</p>
     <script>
-        // Replace with your ESP32's WebSocket IP and port
+        // I will replace with my ESP32's WebSocket IP and port
         const ws = new WebSocket("ws://<ESP32_IP>:81");
 
         ws.onopen = () => {
