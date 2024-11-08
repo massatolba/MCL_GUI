@@ -1,30 +1,32 @@
-
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Sensor Data</title>
+    <title>Water Flow Rate</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
-        #sensorData { font-size: 24px; margin-top: 20px; }
+        #displayData { font-size: 24px; margin-top: 20px; color: blue; }
     </style>
 </head>
 <body>
-    <h1>ESP32 Sensor Data</h1>
-    <p id="sensorData">Connecting...</p>
+    <h1>Water Flow Rate</h1>
+    <p id="displayData">Waiting for data...</p>
     <script>
-        // I will replace with my ESP32's WebSocket IP and port
-        const ws = new WebSocket("ws://172.20.10.3:81");
+        // Replace <ESP32_IP> with the actual IP address of your ESP32
+        const ws = new WebSocket("ws://<ESP32_IP>:81");
 
-        ws.onopen = () => {
-            document.getElementById("sensorData").innerText = "Connected";
+        // Update the display when receiving data from the ESP32
+        ws.onmessage = (event) => {
+            document.getElementById("displayData").innerText = event.data;
         };
 
-        ws.onmessage = (event) => {
-            document.getElementById("sensorData").innerText = "Sensor Value: " + event.data;
+        ws.onopen = () => {
+            document.getElementById("displayData").innerText = "Connected to ESP32";
         };
 
         ws.onclose = () => {
-            document.getElementById("sensorData").innerText = "Disconnected";
+            document.getElementById("displayData").innerText = "Disconnected from ESP32";
         };
     </script>
 </body>
 </html>
+
