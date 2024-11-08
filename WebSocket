@@ -12,7 +12,7 @@
     <p id="sensorData">Connecting...</p>
     <script>
         // I will replace with my ESP32's WebSocket IP and port
-        const ws = new WebSocket("ws://<ESP32_IP>:81");
+        const ws = new WebSocket("ws://172.20.10.3:81");
 
         ws.onopen = () => {
             document.getElementById("sensorData").innerText = "Connected";
